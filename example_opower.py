@@ -1,4 +1,5 @@
 import json
+import os
 from decimal import Decimal
 
 from portlandgeneral import OPowerApi
@@ -9,8 +10,8 @@ def json_lambda(x): return str(x) if type(x) is Decimal else x.__dict__
 
 client = OPowerApi(verbose=True)
 client.login(
-    username='user@email.com',
-    password='redacted'
+    username = os.environ['PGE_USERNAME'],
+    password = os.environ['PGE_PASSWORD']
 )
 
 current_customers = client.current_customers()
